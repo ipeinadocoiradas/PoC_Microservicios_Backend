@@ -1,0 +1,21 @@
+@Almacen_HostAddress = http://localhost:5002
+
+### Disponibilidad del teclado mecánico (100 unidades iniciales)
+GET {{Almacen_HostAddress}}/api/productos/11111111-1111-1111-1111-111111111111/disponibilidad
+
+### Disponibilidad del monitor (escenarios de compensación)
+GET {{Almacen_HostAddress}}/api/productos/33333333-3333-3333-3333-333333333333/disponibilidad
+
+### Reserva manual (repetir la petición devuelve la misma reserva: idempotencia por pedido)
+POST {{Almacen_HostAddress}}/api/reservas
+Content-Type: application/json
+
+{
+  "pedidoId": "bbbbbbbb-0000-0000-0000-000000000001",
+  "lineas": [
+    { "productoId": "22222222-2222-2222-2222-222222222222", "cantidad": 3 }
+  ]
+}
+
+### Reserva de un pedido
+GET {{Almacen_HostAddress}}/api/reservas?pedidoId=bbbbbbbb-0000-0000-0000-000000000001

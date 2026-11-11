@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Adaptadores de Almacén: EF Core (AlmacenDb), consumidores de RabbitMQ, Outbox/Inbox y simulación de fallos. -->
+  <ItemGroup>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Compartido.Infraestructura\Shared.Infraestructura.csproj" />
+    <ProjectReference Include="..\Almacen.Application\Almacen.Application.csproj" />
+    <ProjectReference Include="..\..\..\Contratos\Contratos.Integracion\Contratos.Integracion.csproj" />
+  </ItemGroup>
+</Project>

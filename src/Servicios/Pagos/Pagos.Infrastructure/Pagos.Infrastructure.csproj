@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Adaptadores de Pagos: EF Core (PagosDb), consumidores de RabbitMQ, Outbox/Inbox y pasarela simulada. -->
+  <ItemGroup>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Compartido.Infraestructura\Shared.Infraestructura.csproj" />
+    <ProjectReference Include="..\Pagos.Application\Pagos.Application.csproj" />
+    <ProjectReference Include="..\..\..\Contratos\Contratos.Integracion\Contratos.Integracion.csproj" />
+  </ItemGroup>
+</Project>

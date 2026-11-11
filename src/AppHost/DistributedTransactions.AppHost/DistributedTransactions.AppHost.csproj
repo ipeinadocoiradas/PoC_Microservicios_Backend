@@ -1,0 +1,26 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.6.4">
+  <!--
+    Orquestador de desarrollo de .NET Aspire: levanta SQL Server, RabbitMQ y las tres APIs,
+    inyecta las cadenas de conexión y expone el dashboard con recursos, logs, métricas y trazas.
+
+    El SDK de Aspire añade implícitamente la referencia a Aspire.Hosting.AppHost; por eso este proyecto
+    gestiona sus versiones de paquete localmente en lugar de usar Central Package Management.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <UserSecretsId>distributed-transactions-apphost</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.6.4" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.6.4" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Servicios\Pedidos\Pedidos.Api\Pedidos.Api.csproj" />
+    <ProjectReference Include="..\..\Servicios\Almacen\Almacen.Api\Almacen.Api.csproj" />
+    <ProjectReference Include="..\..\Servicios\Pagos\Pagos.Api\Pagos.Api.csproj" />
+  </ItemGroup>
+</Project>

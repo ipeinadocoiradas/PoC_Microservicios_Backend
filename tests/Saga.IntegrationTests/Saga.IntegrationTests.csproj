@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Pruebas de integración de extremo a extremo con SQL Server 2022 y RabbitMQ 4 reales (Testcontainers).
+    Requieren Docker en ejecución.
+
+    Cada microservicio se compone en un IHost independiente con EXACTAMENTE el mismo registro de
+    Application + Infrastructure que usa su API. Así se puede detener y reiniciar un servicio concreto
+    para simular caídas sin depender de la capa HTTP.
+  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="SSH.NET" />
+    <PackageReference Include="Testcontainers.MsSql" />
+    <PackageReference Include="Testcontainers.RabbitMq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Servicios\Pedidos\Pedidos.Infrastructure\Pedidos.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Servicios\Almacen\Almacen.Infrastructure\Almacen.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Servicios\Pagos\Pagos.Infrastructure\Pagos.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

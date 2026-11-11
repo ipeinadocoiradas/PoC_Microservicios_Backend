@@ -1,0 +1,30 @@
+@Pagos_HostAddress = http://localhost:5003
+
+### Pago de un pedido (sustituya el pedidoId por uno real)
+GET {{Pagos_HostAddress}}/api/pagos?pedidoId=00000000-0000-0000-0000-000000000000
+
+### Pago manual aprobado (repetir la petición devuelve el mismo pago: idempotencia por pedido)
+# @name pagoManual
+POST {{Pagos_HostAddress}}/api/pagos
+Content-Type: application/json
+
+{
+  "pedidoId": "cccccccc-0000-0000-0000-000000000001",
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000001",
+  "importe": 250.00,
+  "moneda": "EUR"
+}
+
+### Consultar el pago creado
+GET {{Pagos_HostAddress}}/api/pagos/{{pagoManual.response.body.$.pagoId}}
+
+### Pago manual rechazado (supera ImporteMaximoAutorizado)
+POST {{Pagos_HostAddress}}/api/pagos
+Content-Type: application/json
+
+{
+  "pedidoId": "cccccccc-0000-0000-0000-000000000002",
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000001",
+  "importe": 1500.00,
+  "moneda": "EUR"
+}

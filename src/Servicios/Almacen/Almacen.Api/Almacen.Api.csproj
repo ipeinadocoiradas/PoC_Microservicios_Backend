@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <UserSecretsId>distributed-transactions-almacen-api</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Almacen.Infrastructure\Almacen.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Shared\DistributedTransactions.ServiceDefaults\DistributedTransactions.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

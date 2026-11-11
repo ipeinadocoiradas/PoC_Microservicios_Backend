@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Núcleo del dominio de Pedidos. Sin dependencias: ni EF Core, ni MassTransit, ni otras capas. -->
+</Project>

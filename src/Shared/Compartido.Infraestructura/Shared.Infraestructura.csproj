@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Bloque técnico de infraestructura: política de reintentos, conexión a RabbitMQ, tablas de Outbox/Inbox
+    e inicialización de bases de datos. Evita repetir la misma configuración en los tres servicios.
+    No contiene tipos de dominio: cada servicio sigue siendo dueño exclusivo de su modelo y de sus datos.
+  -->
+  <ItemGroup>
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Núcleo del dominio de Almacén. Sin dependencias externas. -->
+</Project>

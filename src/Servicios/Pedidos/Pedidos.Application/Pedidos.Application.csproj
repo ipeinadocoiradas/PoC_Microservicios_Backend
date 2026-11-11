@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Casos de uso de Pedidos y orquestación de la Saga.
+    Decisión: la máquina de estados vive en Application porque es lógica de orquestación del negocio.
+    Depende de la abstracción de máquina de estados de MassTransit, pero no del transporte (RabbitMQ)
+    ni de la persistencia (EF Core), que se configuran en Infrastructure.
+  -->
+  <ItemGroup>
+    <PackageReference Include="MassTransit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pedidos.Domain\Pedidos.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Shared.Aplicacion\Shared.Aplicacion.csproj" />
+    <ProjectReference Include="..\..\..\Contratos\Contratos.Integracion\Contratos.Integracion.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Pedidos.UnitTests" />
+  </ItemGroup>
+</Project>

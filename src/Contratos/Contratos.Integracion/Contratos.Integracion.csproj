@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Biblioteca de contratos de integración (Published Language en terminología DDD).
+    No depende de ninguna librería: los mensajes son records planos serializables,
+    de modo que cualquier servicio pueda consumirlos sin acoplarse a MassTransit ni al dominio de otro.
+  -->
+  <PropertyGroup>
+    <RootNamespace>Contratos.Integracion</RootNamespace>
+  </PropertyGroup>
+</Project>

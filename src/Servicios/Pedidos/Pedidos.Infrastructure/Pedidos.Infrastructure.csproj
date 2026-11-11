@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Adaptadores de Pedidos: EF Core (PedidosDb), Outbox, repositorio de la Saga y transporte RabbitMQ. -->
+  <ItemGroup>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" />
+    <PackageReference Include="MassTransit.RabbitMQ" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Compartido.Infraestructura\Shared.Infraestructura.csproj" />
+    <ProjectReference Include="..\Pedidos.Application\Pedidos.Application.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Bloque técnico reutilizable: Result Pattern y despachador CQRS propio (sin MediatR).
+    No contiene lógica de negocio ni tipos de dominio, por lo que compartirlo no acopla a los servicios entre sí.
+    En un entorno real se distribuiría como paquete NuGet interno versionado.
+  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+</Project>

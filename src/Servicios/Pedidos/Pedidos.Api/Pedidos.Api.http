@@ -1,0 +1,70 @@
+@Pedidos_HostAddress = http://localhost:5001
+
+### Escenario A — flujo satisfactorio (2 teclados x 49,90 €)
+# @name crearPedidoExito
+POST {{Pedidos_HostAddress}}/api/pedidos
+Content-Type: application/json
+X-Correlation-ID: demo-escenario-a
+
+{
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000001",
+  "moneda": "EUR",
+  "lineas": [
+    { "productoId": "11111111-1111-1111-1111-111111111111", "cantidad": 2, "precioUnitario": 49.90 }
+  ]
+}
+
+### Seguimiento del pedido (estado de negocio + estado de la Saga)
+GET {{Pedidos_HostAddress}}/api/pedidos/{{crearPedidoExito.response.body.$.pedidoId}}/estado
+
+### Historial de transiciones de la Saga
+GET {{Pedidos_HostAddress}}/api/pedidos/{{crearPedidoExito.response.body.$.pedidoId}}/historial
+
+### Detalle del pedido
+GET {{Pedidos_HostAddress}}/api/pedidos/{{crearPedidoExito.response.body.$.pedidoId}}
+
+### Escenario B — stock insuficiente (producto agotado)
+POST {{Pedidos_HostAddress}}/api/pedidos
+Content-Type: application/json
+
+{
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000002",
+  "moneda": "EUR",
+  "lineas": [
+    { "productoId": "44444444-4444-4444-4444-444444444444", "cantidad": 1, "precioUnitario": 199.00 }
+  ]
+}
+
+### Escenario C — pago rechazado (importe 1.200 € > límite de autorización de 1.000 €)
+POST {{Pedidos_HostAddress}}/api/pedidos
+Content-Type: application/json
+
+{
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000003",
+  "moneda": "EUR",
+  "lineas": [
+    { "productoId": "33333333-3333-3333-3333-333333333333", "cantidad": 2, "precioUnitario": 600.00 }
+  ]
+}
+
+### Fallo técnico en Pagos (importe configurado como ImporteFalloTecnico = 666,66 €) → estado final Fallido
+POST {{Pedidos_HostAddress}}/api/pedidos
+Content-Type: application/json
+
+{
+  "clienteId": "aaaaaaaa-0000-0000-0000-000000000004",
+  "moneda": "EUR",
+  "lineas": [
+    { "productoId": "22222222-2222-2222-2222-222222222222", "cantidad": 1, "precioUnitario": 666.66 }
+  ]
+}
+
+### Validación — devuelve 400 ValidationProblemDetails
+POST {{Pedidos_HostAddress}}/api/pedidos
+Content-Type: application/json
+
+{
+  "clienteId": null,
+  "moneda": "EURO",
+  "lineas": []
+}
