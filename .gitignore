@@ -27,6 +27,7 @@ coverage*.xml
 # Secretos y configuración local (nunca se versionan)
 .env
 appsettings.*.local.json
+appsettings.Development.json
 *.pfx
 
 # Sistema operativo
